@@ -1,0 +1,31 @@
+<!-- <div class="row mx-4">
+    <div class="col-12">
+    <p id="notice"><%= notice %></p>
+    <h1 class="text-center my-3">Admin Dashboard</h1>
+    <div class="card-deck">
+      <% @posts.each do |post| %>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= post.titulo %></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= post.bajada %></h6>
+            <p class="card-text"><%= post.cuerpo %></p>
+          </div>
+          <a href="#" class="card-link"><%= link_to 'Show', post %></a>
+          <div class="card-footer text-muted">
+            <%= post.fecha %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div> -->
+
+
+<h1 class="text-center"><%= link_to 'Publicar noticia', new_post_path %></h1>
+
+<% @posts.each do |post| %>
+  <ul class="list-group">
+    <p><li class="list-group-item">Noticia:  <%= post.titulo %></p> <p>Fecha publicación: <%= post.created_at %></p><p><%= link_to 'Editar', edit_post_path(post) %></p>
+      <p><%= link_to 'Eliminar', post, method: :delete, data: { confirm: 'Seguro que quieres borrar?' } %></li></p>
+  </ul>
+<% end %>

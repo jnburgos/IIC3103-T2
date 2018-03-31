@@ -1,0 +1,70 @@
+<div class="container">
+<div class="row mx-4">
+
+    <div class="col-12" >
+    <p id="notice"><%= notice %></p>
+    <h1 class="text-center my-3">Noticias</h1>
+    <div class="card-deck">
+      <div class="row">
+        <% @posts.in_groups_of(2) do |post1, post2| %>
+          <div class="row">
+            <div style="text-align:center;" class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title"><%= post1.titulo.truncate(200) %><span class="badge badge-success ml-2"><%= post1.opinions.count %></span></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= post1.bajada.truncate(200) %></h6>
+                <p class="card-text"><%= post1.cuerpo.truncate(500) %></p>
+              </div>
+              <a href="#" class="card-link" ;><%= link_to 'Ver noticia', post1 %></a>
+              <div style="text-align:left;"class="card-footer text-muted">
+                <%= post1.created_at%>
+              </div>
+            </div>
+            <% if post2 %>
+              <div style="text-align:center;" class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title"><%= post2.titulo.truncate(200) %><span class="badge badge-success ml-2"><%= post2.opinions.count %></span></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><%= post2.bajada.truncate(200) %></h6>
+                  <p class="card-text"><%= post2.cuerpo.truncate(500) %></p>
+                </div>
+                <a href="#" class="card-link" ;><%= link_to 'Ver noticia', post2 %></a>
+                <div style="text-align:left;"class="card-footer text-muted">
+                  <%= post2.created_at%>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+    </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- <div class="row mx-4">
+    <div class="col-12">
+    <p id="notice"><%= notice %></p>
+    <h1 class="text-center my-3">Noticias</h1>
+    <div class="card-deck">
+      <% @posts.each do |post| %>
+        <div style="text-align:center;" class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= post.titulo %><span class="badge badge-success ml-2"><%= post.opinions.count %></span></h5>
+            <h6 class="card-subtitle mb-2 text-muted"><%= post.bajada.truncate(200) %></h6>
+            <p class="card-text"><%= post.cuerpo.truncate(500) %></p>
+          </div>
+          <a href="#" class="card-link" ;><%= link_to 'Ver noticia', post %></a>
+          <div style="text-align:left;"class="card-footer text-muted">
+            <%= post.fecha %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- <%= link_to 'New Post', new_post_path %> -->
+
+
+<!-- <%= link_to 'New Post', new_post_path %> -->
