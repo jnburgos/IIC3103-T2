@@ -1,0 +1,70 @@
+<!-- <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Titulo:</strong>
+  <%= @post.titulo %>
+</p>
+
+<p>
+  <strong>Bajada:</strong>
+  <%= @post.bajada %>
+</p>
+
+<p>
+  <strong>Cuerpo:</strong>
+  <%= @post.cuerpo %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @post.fecha %>
+</p>
+
+<%if @opinions.present?%>
+  <%@opinions.each do |opinion|%>
+  <p>
+    <strong>Autor:</strong>
+    <%= opinion.autor %>
+    <strong>Opinión:</strong>
+    <%= opinion.cuerpo %>
+  </p>
+  <%end%>
+<%end%>
+
+<%= link_to 'Add comment', new_opinion_path(post_id: @post.id) %>
+<%= link_to 'Back', posts_path %> -->
+
+
+<div class="row mx-4">
+    <div class="col-12">
+    <p id="notice"><%= notice %></p>
+    <!-- <h1 class="text-center my-3"></h1> agregar algun titulo -->
+    <div class="card-deck">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title"><%= @post.titulo %></h5>
+          <h6 class="card-subtitle mb-2 text-muted"><%= @post.bajada %></h6>
+          <p class="card-text"><%= @post.cuerpo %></p>
+        <!-- </div> -->
+        <!-- <div class="card-footer text-muted" class="col-12"> -->
+          <%= @post.created_at%>
+          <p></p>
+          <p><%= link_to 'Añadir comentario', new_opinion_path(post_id: @post.id) %></p>
+          <p><%= link_to 'Volver', posts_path %></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<p></p>
+<h1 class="text-center my-3">Comentarios</h1>
+
+
+<%@opinions.each do |opinion|%>
+  <ul class="list-group">
+    <p><li class="list-group-item">Autor:  <%= opinion.autor %></p> <p> <%= opinion.cuerpo %></p><p></p>
+
+  </ul>
+<% end %>
