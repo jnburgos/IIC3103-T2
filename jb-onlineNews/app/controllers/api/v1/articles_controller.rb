@@ -7,7 +7,7 @@ module Api
         @articles = Article.order('created_at DESC');
         # @articles = @articles.map {|article| article.cuerpo.truncate(5)}
         @articles.each do |article|
-          article.cuerpo = article.cuerpo.truncate(5)
+          article.cuerpo = article.body.truncate(5)
         end
 
         render json: {status: 'SUCCESS', message:'Loaded article', data:@articles},status: :ok
@@ -54,7 +54,7 @@ module Api
       private
 
       def article_params
-        params.permit(:titulo, :bajada, :cuerpo)
+        params.permit(:title, :subtitle, :body)
       end
 
       def set_article

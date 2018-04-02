@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
-  validates :titulo, presence: true
-  # validates :bajada, presence: true
-  validates :cuerpo, presence: true
+  validates :title, presence: true
+  # validates :subtitle, presence: true
+  validates :body, presence: true
   has_many :comentarios, :dependent => :destroy
 
 end

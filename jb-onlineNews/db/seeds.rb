@@ -1,7 +1,7 @@
 10.times do
   Article.create({
-    titulo: Faker::Book.title,
-    bajada: Faker::Book.title,
-    cuerpo: Faker::Lorem.sentence
+    title: Faker::Book.title,
+    subtitle: Faker::Book.title,
+    body: Faker::Lorem.sentence
     })
 end
