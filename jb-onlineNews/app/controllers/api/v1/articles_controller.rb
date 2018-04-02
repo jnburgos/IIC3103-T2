@@ -5,16 +5,24 @@ module Api
 
       def index
         @articles = Article.order('created_at DESC');
+        # @articles = @articles.map {|article| article.cuerpo.truncate(5)}
         @articles.each do |article|
-          article.cuerpo.truncate(2)
+          article.cuerpo = article.cuerpo.truncate(5)
         end
 
-        render json: {status: 'SUCCESS', message: 'Loaded articles', data: @articles}, status: :ok
+        render json: {status: 'SUCCESS', message:'Loaded article', data:@articles},status: :ok
+
+
+
+        # respond_to do |format|
+        #   format.json  {render json: @articles}
+        # end
       end
 
       def show
         @article = Article.find(params[:id])
         render json: {status: 'SUCCESS', message:'Loaded article', data:@article},status: :ok
+
       end
 
       def create
@@ -46,6 +54,11 @@ module Api
 
       def article_params
         params.permit(:titulo, :bajada, :cuerpo)
+      end
+
+      def set_article
+        @article = Article.find(params[:id])
+        @comentarios = Comentario.where(post_id:@article.id)
       end
 
     end

@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
-      resources :articles
+      resources :articles do
+        resources :comentarios
+      end
     end
   end
-  root "articles#index"
 end

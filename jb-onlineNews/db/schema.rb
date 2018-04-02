@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180401201544) do
+ActiveRecord::Schema.define(version: 20180402023010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,4 +23,21 @@ ActiveRecord::Schema.define(version: 20180401201544) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comentarios", force: :cascade do |t|
+    t.string   "author"
+    t.string   "comment"
+    t.integer  "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_comentarios_on_article_id", using: :btree
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "author"
+    t.string   "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "comentarios", "articles"
 end
