@@ -4,9 +4,6 @@ Rails.application.routes.draw do
       resources :articles, path: 'news' do
         resources :comentarios, path: 'comments'
       end
-
-
-
     end
   end
 end

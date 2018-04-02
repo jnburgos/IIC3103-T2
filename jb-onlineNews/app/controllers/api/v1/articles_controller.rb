@@ -7,7 +7,7 @@ module Api
         @articles = Article.order('created_at DESC');
         # @articles = @articles.map {|article| article.cuerpo.truncate(5)}
         @articles.each do |article|
-          article.cuerpo = article.body.truncate(5)
+          article.body = article.body.truncate(500)
         end
 
         render json: {status: 'SUCCESS', message:'Loaded article', data:@articles},status: :ok
@@ -21,7 +21,6 @@ module Api
 
       def show
         @article = Article.find(params[:id])
-        puts 'miau'
         render json: {status: 'SUCCESS', message:'Loaded article', data:@article},status: :ok
 
       end
@@ -44,6 +43,7 @@ module Api
 
       def update
         @articles = Article.find(params[:id])
+        
         if @articles.update_attributes(article_params)
           render json: {status: 'SUCCESS', message:'Updated article', data:@articles},status: :ok
         else
