@@ -1,16 +1,22 @@
 module Api
   module V1
     class ComentariosController < ApplicationController
-
+        before_action :set_article
       def index
-        @comentarios = Comentario.order('created_at DESC');
-
+        @comentarios = @article.comentarios.order('created_at DESC');
+        puts 'gau'
 
         render json: {status: 'SUCCESS', message: 'Loaded articles', data: @comentarios}, status: :ok
       end
 
+       def set_article
+        @article = Article.find(params[:article_id])
+       end
+
       def show
         @comentario = Comentario.find(params[:id])
+
+
         render json: {status: 'SUCCESS', message:'Loaded article', data:@comentario},status: :ok
       end
 

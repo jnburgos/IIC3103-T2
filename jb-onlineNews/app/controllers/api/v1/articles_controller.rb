@@ -21,6 +21,7 @@ module Api
 
       def show
         @article = Article.find(params[:id])
+        puts 'miau'
         render json: {status: 'SUCCESS', message:'Loaded article', data:@article},status: :ok
 
       end
