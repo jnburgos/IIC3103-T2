@@ -8,7 +8,7 @@ module Api
         @comentarios = @article.comentarios.order('created_at DESC');
         puts 'gau'
 
-        render json: {status: 'SUCCESS', message: 'Loaded articles', data: @comentarios}, status: :ok
+        render json: {status: 'SUCCESS', message: 'Loaded articles', data: @comentarios}, status: :ok 
       end
 
        def set_article
