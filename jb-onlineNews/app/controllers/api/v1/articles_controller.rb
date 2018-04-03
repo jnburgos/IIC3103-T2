@@ -31,7 +31,7 @@ module Api
         if article.save
           render json: article,status: :created
         else
-          render json: {status: 'ERROR', message:'Article not saved', data:article.errors},status: :unprocessable_entity
+          render json: :article.errors,status: :unprocessable_entity
         end
       end
 
