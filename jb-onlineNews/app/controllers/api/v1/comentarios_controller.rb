@@ -8,7 +8,7 @@ module Api
         @comentarios = @article.comentarios.order('created_at DESC');
         puts 'gau'
 
-        render json: {status: 'SUCCESS', message: 'Loaded articles', data: @comentarios}, status: :ok 
+        render json: @comentarios, status: :ok
       end
 
        def set_article
@@ -27,7 +27,7 @@ module Api
         @article = Article.find(params[:article_id])
         comentario.article = @article
         if comentario.save
-          render json: {status: 'SUCCESS', message:'Saved article', data:comentario},status: :ok
+          render json: comentario, status: :created
         else
           render json: {status: 'ERROR', message:'Article not saved', data:comentario.errors},status: :unprocessable_entity
         end
