@@ -19,7 +19,7 @@ module Api
       def show
         article = Article.find(params[:id])
         if article.blank?
-          render json: article.errors, status: :not_found
+          render json: { "error": "Not found" }, status: :not_found
         else
           render json: article, status: :ok
         end
