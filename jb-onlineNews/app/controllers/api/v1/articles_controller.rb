@@ -18,7 +18,11 @@ module Api
 
       def show
         article = Article.find(params[:id])
-        render json: article, status: :ok
+        if article.blank?
+          render json: article.errors, status: :not_found
+        else
+          render json: article, status: :ok
+        end
 
       end
 
