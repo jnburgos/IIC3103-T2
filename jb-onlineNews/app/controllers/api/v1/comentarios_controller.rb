@@ -33,6 +33,16 @@ module Api
         end
       end
 
+      def update
+        @comentarios = Comentario.find(params[:id])
+
+        if @comentarios.update_attributes(comentario_params)
+          render json: {status: 'SUCCESS', message:'Updated comment', data:@comentarios},status: :ok
+        else
+          render json: {status: 'ERROR', message:'Comment not updated', data:@comentarios.errors},status: :unprocessable_entity
+        end
+      end
+
       def destroy
         @comentarios = Comentario.find(params[:id])
         @comentarios.destroy
