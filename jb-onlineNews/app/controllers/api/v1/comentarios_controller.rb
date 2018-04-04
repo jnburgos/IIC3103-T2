@@ -15,8 +15,10 @@ module Api
        end
 
       def show
-        @comentario = Comentario.find(params[:id])
-        render json: @comentario,status: :ok
+        @comentario = Comentario.find_by(id: params[:id])
+        # render json: @comentario,status: :ok
+        render json: { "error": "Not found" }, status: :not_found unless @comentario
+        render json: @comentario, status: :ok if @comentario
       end
 
       def create
