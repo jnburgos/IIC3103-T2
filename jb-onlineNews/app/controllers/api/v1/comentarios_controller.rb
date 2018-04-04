@@ -7,7 +7,8 @@ module Api
       def index
         @comentarios = @article.comentarios.order('created_at DESC');
 
-        render json: @comentarios, status: :ok
+        render json: { "error": "Not found" }, status: :not_found unless @comentario
+        render json: @comentario, status: :ok if @comentario
       end
 
        def set_article

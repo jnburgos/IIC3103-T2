@@ -10,10 +10,8 @@ module Api
           article.body = article.body.truncate(500)
         end
 
-        render json: @articles,status: :ok
-        # respond_to do |format|
-        #   format.json  {render json: @articles}
-        # end
+        render json: { "error": "Not found" }, status: :not_found unless @articles
+        render json: @articles, status: :ok if @articles
       end
 
       def show
