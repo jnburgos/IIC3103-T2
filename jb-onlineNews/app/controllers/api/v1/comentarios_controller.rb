@@ -6,7 +6,6 @@ module Api
 
       def index
         @comentarios = @article.comentarios.order('created_at DESC');
-        puts 'gau'
 
         render json: @comentarios, status: :ok
       end

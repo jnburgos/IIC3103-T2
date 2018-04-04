@@ -17,13 +17,9 @@ module Api
       end
 
       def show
-        @article = Article.find(params[:id])
-        if @article
-          render json: @article, status: :ok
-        else
-          render json: @article.errors, status: :not_found
-        end
-
+      @article = Article.find_by(id: params[:id])
+      render json: { "error": "Not found" }, status: :not_found unless @article
+      render json: @article, status: :ok if @article
       end
 
       def create
