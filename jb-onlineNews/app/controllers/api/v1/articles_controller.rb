@@ -4,51 +4,51 @@ module Api
       include ActionView::Helpers::TextHelper
 
       def index
-        articles = Article.order('created_at DESC');
+        @articles = Article.order('created_at DESC');
         # @articles = @articles.map {|article| article.cuerpo.truncate(5)}
-        articles.each do |article|
+        @articles.each do |article|
           article.body = article.body.truncate(500)
         end
 
-        render json: articles,status: :ok
+        render json: @articles,status: :ok
         # respond_to do |format|
         #   format.json  {render json: @articles}
         # end
       end
 
       def show
-        article = Article.find(params[:id])
-        if article
-          render json: article, status: :ok
+        @article = Article.find(params[:id])
+        if @article
+          render json: @article, status: :ok
         else
-          render json: article.errors, status: :not_found
+          render json: @article.errors, status: :not_found
         end
 
       end
 
       def create
-        article = Article.new(article_params)
+        @article = Article.new(article_params)
 
-        if article.save
-          render json: article,status: :created
+        if @article.save
+          render json: @article,status: :created
         else
-          render json: article.errors,status: :unprocessable_entity
+          render json: @article.errors,status: :unprocessable_entity
         end
       end
 
       def destroy
-        articles = Article.find(params[:id])
-        articles.destroy
-        render json: articles,status: :ok
+        @articles = Article.find(params[:id])
+        @articles.destroy
+        render json: @articles,status: :ok
       end
 
       def update
-        articles = Article.find(params[:id])
+        @articles = Article.find(params[:id])
 
-        if articles.update_attributes(article_params)
-          render json: articles,status: :ok
+        if @articles.update_attributes(article_params)
+          render json: @articles,status: :ok
         else
-          render json: articles.errors,status: :unprocessable_entity
+          render json: @articles.errors,status: :unprocessable_entity
         end
       end
 

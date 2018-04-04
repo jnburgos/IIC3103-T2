@@ -17,8 +17,6 @@ module Api
 
       def show
         @comentario = Comentario.find(params[:id])
-
-
         render json: @comentario,status: :ok
       end
 
